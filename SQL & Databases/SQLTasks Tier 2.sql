@@ -140,6 +140,18 @@ QUESTIONS:
 The output of facility name and total revenue, sorted by revenue. Remember
 that there's a different cost for guests and members! */
 
+select sub.name, SUM(sub.revenue) AS revenue
+from (select b.facid, b.memid, f.name, f.guestcost, f.membercost, COUNT( b.facid ) AS facid_count,
+	case when b.memid =0
+	then count(b.facid) * f.guestcost
+	else count(b.facid) * f.membercost
+	end as 'revenue'
+	from Bookings as b
+	left join Facilities as f on b.facid = f.facid
+	group by b.facid, b.memid) as sub
+group by sub.facid
+having revenue <= 1000;
+
 /* Q11: Produce a report of members and who recommended them in alphabetic surname,firstname order */
 
 select m.firstname, m.surname, r.firstname, r.surname
