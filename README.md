@@ -8,7 +8,7 @@ A few examples of influences on Bitcoin price:
 2. In September 2021, El Salvador announed it would adopt Bitcoin as a legal tender. 
 3. In September 2021, China banned the exchange and trade of all cryptocurrency.
 
-Using machine learning, can the price of Bitcoin be predicted with some accuracy, if so, can a financial strategy be formed to assess the investment incentive and duration on the coin?
+With this constant noise and change in Bitcoin today, can a the price of Bitcoin be predicted with some accuracy, if so, can a financial strategy be formed to assess the investment incentive and duration on the coin and individual?
 
 ## Data Wrangling
 Bitcoin's historical price can be found through varying degrees on multiple locations. I chose to use yahoo finance as it obtained a massive history of the coin dating back to September of 2014 from the following link. The date range has to be manually set before it can be retrieved. 
@@ -17,19 +17,26 @@ Link: https://finance.yahoo.com/quote/BTC-USD/history/
 
 ## Exploratory Data Analysis
 The dataset is very simple and was already organized; missing information was dropped.
+
+Volume trade per day.
+
+![image](https://user-images.githubusercontent.com/74972980/141391946-7de8d5f6-2278-4ba7-86ff-3a8e58e798f9.png)
+
+From the last 120 days, we see the price continues to fluctuate. A decrease in price occurred during the month of September 2021 and has since been on the rise again.
+
 ![image](https://user-images.githubusercontent.com/74972980/141381625-7a89def1-6732-47df-af96-c714327fcea5.png)
 
 
 ## Preprocessing and Training
-Early model view with si
+Early model view prediction of the final year of the dataset.
 ![image](https://user-images.githubusercontent.com/74972980/141381693-c286b76a-0d43-4ac5-a01d-204ae6d653e3.png)
 
 ## Modeling
 Facebook's Prophet was used for forecasting. The model was fit to the entire dataset and used to preduct the next 100 days. 
+![image](https://user-images.githubusercontent.com/74972980/141392825-366cc000-deed-4ba2-8d51-24e10d14d24b.png)
 
-
-## Model tuning
-
+### Model tuning
+Parameter of the model were turned that reduced the root mean squared error (RMSE) the most.
 
 ## Model Prediction on Historical Data
 The training-set is from the beginning up until November 18, 2020, and used to predict the final year of the data. 
