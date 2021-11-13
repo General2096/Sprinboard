@@ -1,18 +1,18 @@
 ![image](https://user-images.githubusercontent.com/74972980/141377147-6a64b9da-a9bb-4896-9056-fe66ed0f394f.png)
 
 # Bitcoin Cryptocurrency Forecast
-Bitcoin is a decentralized digital currency that you can buy, sell and exchange directly, without an intermediary like a bank. Bitcoin today is the largest known cryptocurrency in the world holding the largest value. Similar to other cryptocurrencies, the value is extremely volatile, affected by a myriad of factors such as governance, regulation, social media, political influencers, social influences, etc. 
+You constantly hear both on news/financial outlets and social media about investment in cryptocurrency, more specifically, BItcoin. Bitcoin is a decentralized digital currency that you can buy, sell and exchange directly, without an intermediary like a bank. Bitcoin today is the largest known cryptocurrency in the world holding the largest value. Similar to other cryptocurrencies, the value is extremely volatile, affected by a myriad of factors such as governance, regulation, social media, political influencers, social influences, etc. 
 
 A few examples of influences on Bitcoin price:
 1. In March 2021, Tesla announced that it would accept Bitcoin.
 2. In September 2021, El Salvador announed it would adopt Bitcoin as a legal tender. 
 3. In September 2021, China banned the exchange and trade of all cryptocurrency.
 
-With this constant noise and change in Bitcoin today, can a the price of Bitcoin be predicted with some accuracy, if so, can a financial strategy be formed to assess the investment incentive and duration on the coin and individual?
+With this constant noise and change in Bitcoin today, can a the price of Bitcoin be predicted with some accuracy, if so, can a financial strategy be formed to assess the investment incentive and duration on the coin and individual for a period of 7 days. In other words, can the price of Bitcoin be predicted 7 days into the future from the end of the dataset with a final say of whether to buy or sell Bitcoin?
 
 ## Data Wrangling
-Bitcoin's historical price can be found through varying degrees on multiple locations. I chose to use yahoo finance as it obtained a massive history of the coin dating back to September of 2014 from the following link. The date range has to be manually set before it can be retrieved. 
-Link: https://finance.yahoo.com/quote/BTC-USD/history/
+Bitcoin's historical price can be found through varying degrees on multiple locations. I chose to use yahoo finance as it obtained a massive history of the coin dating back to September of 2014 from [Yahoo](https://finance.yahoo.com/quote/BTC-USD/history/). The date range has to be manually set to its earliest availability before it can be retrieved. 
+
 
 
 ## Exploratory Data Analysis
