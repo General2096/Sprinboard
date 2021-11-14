@@ -71,52 +71,20 @@ Now that we have the tuned model, how well does it perform in determining the fi
 
 ![image](https://github.com/General2096/Springboard/blob/main/Capstone%20Project/Images/Modeling%20Actual%20vs.%20Predicted.png)
 
+While the predicted values see a small increase each day, he predicted values continue to underperform on each day.
 
 Showcased below is the 7 days following the end of the training-set.
 
-![image](https://user-images.githubusercontent.com/74972980/141696563-34287bf0-d2f4-48c2-99b8-658f54ad5db8.png)
+![image](https://github.com/General2096/Springboard/blob/main/Capstone%20Project/Images/Final%207%20day%20forecast.png)
 
 
 ## Model Prediction on Future Data
-Now, this is the stuff we care about. How will the model forecase the future to see if we can turn a profit with Bitcoin investment or stay away from it? The entire dataset was reused to train the model and used to predict the next 100 days. While the goal of this project was just to predict 7 days into the future; 100 day prediction was used to see the potential values of the model might hold. The values that we will look at, will only those 7 days.
+Now, this is the stuff we care about. How will the model forecase the future to see if we can turn a profit with Bitcoin investment or stay away from it? The entire dataset was reused to train the model and used to predict the next 7 days. 
 
-Insert image of the graph predition
-
-Insert image of the 7 day table
-
-From the table showcased above, the model predics a continous rise in the value of Bitcoin.
-
-> Based on the prediction, you would invest into Bitcoin and see the value increase for the next 7 days.
+![image](https://github.com/General2096/Springboard/blob/main/Capstone%20Project/Images/Modeling%207%20day%20future.png)
 
 
-## Cross Validation
-Now, is it possible the model got lucky with the prediction? Could it have just been luck the values align with what we want them to be and not see potential errors? If those errors are apparent, can they be mitigated. A way to mitigate this is to perform cross validation. With this method, we take multiple sets of the data and measure the forecast error using historical data. 
-
-Cross validation performance metrics are visualized for the MAPE(Mean Absolute Percent Error). It measures the size of the error in percentage terms (easy interpretation). It is calculated as the average of the unsigned percentage error.
-
-Insert image of the plot cross valiadtion metric
-
-We see for this forecast that errors around 20% are typical for predictions one month into the future, and that errors increase up to around 100% for predictions that are a 9 months out and decrease to 95% as it gets closer to 1 year.
-
-
-## Additional Regressors
-We have additional information additionally that was removed in the beginning. Can this be used to increase the prediction power of the model.
-
-The following regressors were added to the model: High, Low, Volume, and Return. Similar to above, the same size training set was used to predict the final year of the dataset.
-
-Insert image of the model prediction of last year
-
-The model performed very well, almost matching the actual output
-
-Insert image of actual vs predicted chart
-
-Set of the predicted and actual for the first and last five days
-![image](https://user-images.githubusercontent.com/74972980/141362389-056617b2-817c-4504-ad73-cbd4b5054efe.png)
-
-
-Similar to above, cross validation was performed again with much better results. 
-Insert image of final cross validation chart
-We see for this forecast that errors around 1-2% are typical for predictions one month into the future, and that errors increase up to around 4% for predictions that are a 3 months out and decrease to 2% as it gets closer to 4 months.
+> Based on the prediction, if you invest into Bitcoin by the end of October 18, 2021, you would see the value increase for the next 7 days.
 
 ## Future Work
 The model requires a lot of work to take in multiple factors. Other work can include:
