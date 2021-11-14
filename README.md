@@ -10,23 +10,23 @@ A few examples of influences on Bitcoin price:
 
 With this constant noise and change in Bitcoin today, can a the price of Bitcoin be predicted with some accuracy, if so, can a financial strategy be formed to assess the investment incentive and duration on the coin and individual for a period of 7 days. 
 
-> In other words, can the price of Bitcoin be predicted 7 days into the future from the end of the dataset with a say of whether to buy or sell Bitcoin?
+> In other words, can the price of Bitcoin be predicted 7 days into the future from the end of the dataset with some confidence on whether to buy or sell Bitcoin?
 
 ## Data Wrangling
-Bitcoin's historical price can be found through varying degrees on multiple locations. I chose to use yahoo finance as it obtained a massive history of the coin dating back to September of 2014 from [Yahoo](https://finance.yahoo.com/quote/BTC-USD/history/). The date range has to be manually set to its earliest availability before it can be retrieved. 
+Bitcoin's historical price can be found through varying degrees on multiple locations. I chose to use [Yahoo](https://finance.yahoo.com/quote/BTC-USD/history/) finance as it obtained a massive history of the coin dating back to September of 2014. The date range has to be manually set to its earliest availability before it can be retrieved if you are not following the notebook. 
 
 
 ![image](https://github.com/General2096/Springboard/blob/main/Capstone%20Project/Images/Data%20Wrangling%20-%20Original.png)
 
 
 ## Exploratory Data Analysis
-New addition had to be made to the current dataset The first was adding a Return column that was the percentage of change on the Adjusted Close price to the day before. Secondly, a column interpreting the date to the day of the week. With this information we see which days the largest amount of bitcoin trade by volume are conducted. 
+New addition had to be made to the current dataset The first was adding a Return column that was the percentage of change on the 'Adjusted Close' price to the day before. Secondly, a column interpreting the date to the day of the week. With this information we see which days the largest amount of bitcoin trade by volume are conducted. 
 
 The final seven days of the dataset with the inclusion of the added 'Return' and 'Day of Week' columns
 
 ![image](https://github.com/General2096/Springboard/blob/main/Capstone%20Project/Images/Actual%20Last%207%20days.png)
 
-By grouping the all of the dates through their respective days, we can see the largest day for Bitcoin trade by volume is on Sunday. 
+By grouping the all of the dates through their respective days, we can see unsurprisingly, the largest day for Bitcoin trade by volume is on Sunday. 
 
 
 ![image](https://github.com/General2096/Springboard/blob/main/Capstone%20Project/Images/EDA%20Volume.png)
@@ -34,6 +34,9 @@ By grouping the all of the dates through their respective days, we can see the l
 
 
 A packae called mplfinance was used to create the graph below where the last 120 days were assessed based on price and volume. 
+
+`!pip install mpl_finance` or 
+`!pip install --upgrade mplfinance` you already have the package installed.
 
 
 ![image](https://github.com/General2096/Springboard/blob/main/Capstone%20Project/Images/EDA%20mplfinance.png)
@@ -44,9 +47,11 @@ From the last 120 days, we see the price continues to fluctuate. A decrease in p
 ## Preprocessing and Training
 > [Prophet](https://facebook.github.io/prophet/) is an open source library published by Facebook that is based on decomposable models. It provides the ability to make time series predictions with good accuracy using simple intuitive parameters and has support for including impact of custom seasonality and holidays! 
 
-Prophet must first be installed. In my case with Python: `pip install pystan==2.19.1.1` and `pip install prophet`.
+Prophet must first be installed. In my case with Python: 
+`pip install pystan==2.19.1.1` and 
+`pip install prophet`.
 
-Without perform any type of tuning, how would the model see the current data? Initial processing and training was conducted on the first 6 years, testing the final year of the dataset. The black dots represent a specific date, the shaded blue represent the upper and lower uncertainty, and the blue line represents the prediction.
+Without perform any type of tuning, how would the model see the current data? Initial processing and training was conducted on the entire dataset minus the last 7 days which were used for to test the model performance. The black dots represent a specific date, the shaded blue represent the upper and lower uncertainty, and the blue line represents the prediction.
 
 ![image](https://github.com/General2096/Springboard/blob/main/Capstone%20Project/Images/Preprocessing%20Final%20Year.png)
 
