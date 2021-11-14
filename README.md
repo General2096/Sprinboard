@@ -15,35 +15,47 @@ With this constant noise and change in Bitcoin today, can a the price of Bitcoin
 ## Data Wrangling
 Bitcoin's historical price can be found through varying degrees on multiple locations. I chose to use yahoo finance as it obtained a massive history of the coin dating back to September of 2014 from [Yahoo](https://finance.yahoo.com/quote/BTC-USD/history/). The date range has to be manually set to its earliest availability before it can be retrieved. 
 
-Insert image of head and tail of the dataset
+
+![image](https://github.com/General2096/Springboard/blob/main/Capstone%20Project/Images/Data%20Wrangling%20-%20Original.png)
+
 
 ## Exploratory Data Analysis
 New addition had to be made to the current dataset The first was adding a Return column that was the percentage of change on the Adjusted Close price to the day before. Secondly, a column interpreting the date to the day of the week. With this information we see which days the largest amount of bitcoin trade by volume are conducted. 
 
-Insert image of last 7 days of the dataset.
+The final seven days of the dataset with the inclusion of the added 'Return' and 'Day of Week' columns
 
-Insert image of the volume dataset.
+![image](https://github.com/General2096/Springboard/blob/main/Capstone%20Project/Images/Actual%20Last%207%20days.png)
 
-Insert image of mpl
+By grouping the all of the dates through their respective days, we can see the largest day for Bitcoin trade by volume is on Sunday. 
+
+
+![image](https://github.com/General2096/Springboard/blob/main/Capstone%20Project/Images/EDA%20Volume.png)
+
+
+
+A packae called mplfinance was used to create the graph below where the last 120 days were assessed based on price and volume. 
+
+
+![image](https://github.com/General2096/Springboard/blob/main/Capstone%20Project/Images/EDA%20mplfinance.png)
 
 From the last 120 days, we see the price continues to fluctuate. A decrease in price occurred during the month of September 2021 and has since been on the rise again.
 
 
 ## Preprocessing and Training
-> Prophet is an open source library published by Facebook that is based on decomposable (trend+seasonality+holidays) models. It provides the ability to make time series predictions with good accuracy using simple intuitive parameters and has support for including impact of custom seasonality and holidays! 
+> [Prophet](https://facebook.github.io/prophet/) is an open source library published by Facebook that is based on decomposable models. It provides the ability to make time series predictions with good accuracy using simple intuitive parameters and has support for including impact of custom seasonality and holidays! 
 
-Without perform any type of tuning, how would the model see the current data. Initial processing and training was conducted on the first 6 years, testing the final year of the dataset.
+Prophet must first be installed. In my case with Python: `pip install pystan==2.19.1.1` and `pip install prophet`.
 
-![image](https://user-images.githubusercontent.com/74972980/141381693-c286b76a-0d43-4ac5-a01d-204ae6d653e3.png)
+Without perform any type of tuning, how would the model see the current data? Initial processing and training was conducted on the first 6 years, testing the final year of the dataset. The black dots represent a specific date, the shaded blue represent the upper and lower uncertainty, and the blue line represents the prediction.
+
+![image](https://github.com/General2096/Springboard/blob/main/Capstone%20Project/Images/Preprocessing%20Final%20Year.png)
 
 ## Modeling
 To further see the model's behavior, it was fit to the entire dataset and used to produce the next 100 days.
 
-Insert image of dataset with 100 day prediction
+![image](https://github.com/General2096/Springboard/blob/main/Capstone%20Project/Images/Modeling%20Future%20Graph.png)
 
 The overall does a mediocre job of fitting the actual values of the graph. The better fit the graph, a parameter of the model was turned that reduced the root mean squared error (RMSE) the most. The new model does fit the graph slightly better, but additional work needs to be done. For now, we will leave it as is.
-
-Insert image of tuned model
 
 ## Model Prediction on Historical Data
 Now that we have the tuned model, how well does it perform in determining the final year of the dataset? Similar to before, the model was trained on the first 6 years to predict the final year. Those predicted outputs are then compared to the actual values. 
