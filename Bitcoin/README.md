@@ -13,14 +13,16 @@ With this constant noise and change in Bitcoin today, can a the price of Bitcoin
 > In other words, can the price of Bitcoin be predicted 7 days into the future from the end of the dataset with a say of whether to buy or sell Bitcoin?
 
 ## Data Wrangling
-Bitcoin's historical price can be found through varying degrees on multiple locations. I chose to use yahoo finance as it obtained a massive history of the coin dating back to September of 2014 from [Yahoo](https://finance.yahoo.com/quote/BTC-USD/history/). The date range has to be manually set to its earliest availability before it can be retrieved. 
+Bitcoin's historical price can be found through varying degrees on multiple locations. I chose to use the [Binance](https://www.binance.us/en/home) client to obtain both the latest and historical data by running the notebook and saving the outcome to a csv file. Allowing it to be easily access to other scripts.
+
+Another option utilized previously was yahoo finance as you will be able to obtain a massive history of the coin dating back to September of 2014 from [Yahoo](https://finance.yahoo.com/quote/BTC-USD/history/). The date range has to be manually set to its earliest availability before it can be retrieved. 
 
 
 ![image](https://github.com/General2096/Springboard/blob/main/Capstone%20Project/Images/Data%20Wrangling%20-%20Original.png)
 
 
 ## Exploratory Data Analysis
-New addition had to be made to the current dataset The first was adding a Return column that was the percentage of change on the Adjusted Close price to the day before. Secondly, a column interpreting the date to the day of the week. With this information we see which days the largest amount of bitcoin trade by volume are conducted. 
+New addition had to be made to the current dataset The first was adding a Return column that was the percentage of change on the closing price to the day before. Secondly, a column interpreting the date to the day of the week. With this information we see which days the largest amount of bitcoin trade by volume are conducted. 
 
 The final seven days of the dataset with the inclusion of the added 'Return' and 'Day of Week' columns
 
@@ -46,7 +48,7 @@ From the last 120 days, we see the price continues to fluctuate. A decrease in p
 
 Prophet must first be installed. In my case with Python: `pip install pystan==2.19.1.1` and `pip install prophet`.
 
-Without perform any type of tuning, how would the model see the current data? Initial processing and training was conducted on the first 6 years, testing the final year of the dataset. The black dots represent a specific date, the shaded blue represent the upper and lower uncertainty, and the blue line represents the prediction.
+Without performing any type of tuning, how would the model see the current data? Initial processing and training was conducted on the first 6 years, testing the final year of the dataset. The black dots represent a specific date, the shaded blue represent the upper and lower uncertainty, and the blue line represents the prediction.
 
 ![image](https://github.com/General2096/Springboard/blob/main/Capstone%20Project/Images/Preprocessing%20Final%20Year.png)
 
@@ -65,9 +67,11 @@ Insert image of predicted vs actual chart.
 Showcased below is the 14 days following the end of the training-set
 ![image](https://user-images.githubusercontent.com/74972980/141357573-7d0284ac-4735-46c6-84e3-dc23faa6e879.png)
 
+## BackTesting
+Backtesting allows a trader to simulate a trading strategy using historical data to generate results and analyze risk and profitability before risking any actual capital. The library Backtrader was used to test our strategy. The entire dataset was run on backtrader and concluded with an ROI: 24655.08%%, Start cash 100000.00, End cash: 24755078.98.
 
 ## Model Prediction on Future Data
-Now, this is the stuff we care about. How will the model forecase the future to see if we can turn a profit with Bitcoin investment or stay away from it? The entire dataset was reused to train the model and used to predict the next 100 days. While the goal of this project was just to predict 7 days into the future; 100 day prediction was used to see the potential values of the model might hold. The values that we will look at, will only those 7 days.
+Now, this is the stuff we care about. How will the model forecase the future to see if we can turn a profit with Bitcoin investment or stay away from it? The entire dataset was reused to train the model and used to predict the next 30 days. While the goal of this project was just to predict 7 days into the future; 30 day prediction was used to see the potential values of the model might hold. The values that we will look at, will only those 7 days.
 
 Insert image of the graph predition
 
