@@ -13,24 +13,21 @@ With this constant noise and change in Bitcoin today, can a the price of Bitcoin
 > In other words, can the price of Bitcoin be predicted 7 days into the future from the end of the dataset with a say of whether to buy or sell Bitcoin?
 
 ## Data Wrangling
-Bitcoin's historical price can be found through varying degrees on multiple locations. I chose to use the [Binance](https://www.binance.us/en/home) client to obtain both the latest and historical data by running the notebook and saving the outcome to a csv file. Allowing it to be easily access to other scripts.
+Bitcoin's historical price can be found through varying degrees on multiple locations. I chose to use the [Binance](https://www.binance.us/en/home) client to obtain both historical data. When an account is made, you can run the client through the keys associated with your account. The file can be run completely, overwrite the previous data with the most up-to-date, and saving the outcome to a csv file; allowing it to be easily accessed by other scripts.
 
-Another option utilized previously was yahoo finance as you will be able to obtain a massive history of the coin dating back to September of 2014 from [Yahoo](https://finance.yahoo.com/quote/BTC-USD/history/). The date range has to be manually set to its earliest availability before it can be retrieved. 
+Another option utilized previously was yahoo finance as you will be able to obtain a much longer historical length of the coin dating back to September of 2014 from [Yahoo](https://finance.yahoo.com/quote/BTC-USD/history/). The date range has to be manually set to its earliest availability before it can be retrieved. 
 
-
-![image](https://github.com/General2096/Springboard/blob/main/Capstone%20Project/Images/Data%20Wrangling%20-%20Original.png)
+For both instances, the data is already organized with very little cleaning and organization to do.
+(insert image of binance df)
+![image](https://github.com/General2096/Springboard/blob/main/Bitcoin/Images/Data%20Wrangling%20-%20Original.png)
 
 
 ## Exploratory Data Analysis
-New addition had to be made to the current dataset The first was adding a Return column that was the percentage of change on the closing price to the day before. Secondly, a column interpreting the date to the day of the week. With this information we see which days the largest amount of bitcoin trade by volume are conducted. 
+New addition had to be made to the current dataset The first was adding a Return column that was the percentage of change on the closing price to the day before. Secondly, a column interpreting the date to the day of the week. With this information we see which days had the largest amount of bitcoin trade by volume are conducted. 
 
-The final seven days of the dataset with the inclusion of the added 'Return' and 'Day of Week' columns
+The final seven days of the dataset with the inclusion of the added 'Return' and 'Day of Week' columns. By grouping the all of the dates through their respective days, we can see the largest day for Bitcoin trade by volume is on Saturdat and Sunday by a large margin. 
 
-![image](https://github.com/General2096/Springboard/blob/main/Capstone%20Project/Images/Actual%20Last%207%20days.png)
-
-By grouping the all of the dates through their respective days, we can see the largest day for Bitcoin trade by volume is on Sunday. 
-
-
+insert image of volume by day graph
 ![image](https://github.com/General2096/Springboard/blob/main/Capstone%20Project/Images/EDA%20Volume.png)
 
 
@@ -40,27 +37,34 @@ A packae called mplfinance was used to create the graph below where the last 120
 
 ![image](https://github.com/General2096/Springboard/blob/main/Capstone%20Project/Images/EDA%20mplfinance.png)
 
-From the last 120 days, we see the price continues to fluctuate. A decrease in price occurred during the month of September 2021 and has since been on the rise again.
+From the last 120 days, we see the price continues to fluctuate. A decrease in price occurred during the month of September 2021, but during the month of November, Bitcoin has seen a massive decrease in value and continued to decrease to the present day.
 
 
 ## Preprocessing and Training
-> [Prophet](https://facebook.github.io/prophet/) is an open source library published by Facebook that is based on decomposable models. It provides the ability to make time series predictions with good accuracy using simple intuitive parameters and has support for including impact of custom seasonality and holidays! 
+> [Prophet](https://facebook.github.io/prophet/) is an open source library published by Facebook that is based on an additive model. It provides the ability to make time series predictions with good accuracy using simple intuitive parameters and provides an upper and lower limit to the prediction.
 
-Prophet must first be installed. In my case with Python: `pip install pystan==2.19.1.1` and `pip install prophet`.
+Prophet must first be installed. In this case with Python and a Windows machine: 
+First create an environment, then the mingw-w64 compiler, and lastly the required libraries:
+```
+conda install libpython m2w64-toolchain -c msys2
+conda install pystan -c conda-forge
+conda install prophet -c conda-forge
+```
 
-Without performing any type of tuning, how would the model see the current data? Initial processing and training was conducted on the first 6 years, testing the final year of the dataset. The black dots represent a specific date, the shaded blue represent the upper and lower uncertainty, and the blue line represents the prediction.
+Without performing any type of tuning, how would the model see the current data? The data was seperated into an 80 - 20 split; training on 80% of the data and testing/predicting the last 20% of data.The black dots represent a specific date, the shaded blue represent the upper and lower uncertainty, and the blue line represents the prediction. The date and value columns must be renamed to work with prophet.
 
+rerun notebook for new images
 ![image](https://github.com/General2096/Springboard/blob/main/Capstone%20Project/Images/Preprocessing%20Final%20Year.png)
 
 ## Modeling
-To further see the model's behavior, it was fit to the entire dataset and used to produce the next 100 days.
+To further see the model's behavior, it was fit to the entire dataset and used to produce the next 30 days.
 
 ![image](https://github.com/General2096/Springboard/blob/main/Capstone%20Project/Images/Modeling%20Future%20Graph.png)
 
-The overall does a mediocre job of fitting the actual values of the graph. The better fit the graph, a parameter of the model was turned that reduced the root mean squared error (RMSE) the most. The new model does fit the graph slightly better, but additional work needs to be done. For now, we will leave it as is.
+The overall does a mediocre job of fitting the actual values of the graph. To better fit the graph, a parameter of the model was tuned that reduced the root mean squared error (RMSE) the most. The new model does fit the graph much better, but additional work needs to be done. For now, we will leave it as is.
 
 ## Model Prediction on Historical Data
-Now that we have the tuned model, how well does it perform in determining the final year of the dataset? Similar to before, the model was trained on the first 6 years to predict the final year. Those predicted outputs are then compared to the actual values. 
+Now that we have the tuned model, how well does it perform in determining the final year of the dataset? Similar to before, the model was trained on the initial 80% and predicted the last 20%. Those predicted outputs are then compared to the actual values. 
 
 Insert image of predicted vs actual chart.
 
@@ -71,7 +75,7 @@ Showcased below is the 14 days following the end of the training-set
 Backtesting allows a trader to simulate a trading strategy using historical data to generate results and analyze risk and profitability before risking any actual capital. The library Backtrader was used to test our strategy. The entire dataset was run on backtrader and concluded with an ROI: 24655.08%%, Start cash 100000.00, End cash: 24755078.98.
 
 ## Model Prediction on Future Data
-Now, this is the stuff we care about. How will the model forecase the future to see if we can turn a profit with Bitcoin investment or stay away from it? The entire dataset was reused to train the model and used to predict the next 30 days. While the goal of this project was just to predict 7 days into the future; 30 day prediction was used to see the potential values of the model might hold. The values that we will look at, will only those 7 days.
+Now, this is the stuff we care about. How will the model forecase the future to see if we can turn a profit with Bitcoin investment or stay away from it? The entire dataset was reused to train the model and used to predict the next 7 days.
 
 Insert image of the graph predition
 
