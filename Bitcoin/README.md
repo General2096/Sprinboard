@@ -50,25 +50,24 @@ conda install prophet -c conda-forge
 
 Without performing any type of tuning, how would the model see the current data? The data was seperated into an 80 - 20 split; training on 80% of the data and testing/predicting the last 20% of data.The black dots represent a specific date, the shaded blue represent the upper and lower uncertainty, and the blue line represents the prediction. The date and value columns must be renamed to work with prophet.
 
-rerun notebook for new images
-![image](https://github.com/General2096/Springboard/blob/main/Capstone%20Project/Images/Preprocessing%20Final%20Year.png)
+
+![image](https://github.com/General2096/Springboard/blob/main/Bitcoin/Images/Binance-Premodeling%20Graph%20(30-days).png)
 
 ## Modeling
 To further see the model's behavior, it was fit to the entire dataset and used to produce the next 30 days.
 
-![image](https://github.com/General2096/Springboard/blob/main/Capstone%20Project/Images/Modeling%20Future%20Graph.png)
+![image](https://github.com/General2096/Springboard/blob/main/Bitcoin/Images/Binance-Modeling%20Graph%20(30%20days).png)
 
-The overall does a mediocre job of fitting the actual values of the graph. To better fit the graph, a parameter of the model was tuned that reduced the root mean squared error (RMSE) the most. The new model does fit the graph much better, but additional work needs to be done. For now, we will leave it as is.
+The overall model does a mediocre job of fitting the actual values of the graph. To better fit the graph, a parameter of the model was tuned that reduced the root mean squared error (RMSE) the most. The new model fits the graph much better, but additional work needs to be done. For now, we will leave it as is.
 
-insert image of tuned model graph
-![image]()
+![image](https://github.com/General2096/Springboard/blob/main/Bitcoin/Images/Binance-Modeling-Tuned_model-graph.png)
 
 ## Model Prediction on Historical Data
 Now that we have the tuned model, how well does it perform in determining the final week of the dataset? The model was trained on all but the last 7 days of the dataset and predicted those values. Those predicted outputs are then compared to the actual values. 
 
-Insert image of predicted vs actual chart.
-![image]()
-Write small exlanation of the information
+The model greatly over-predicted the value of Bitcoin, the error becoming much larger after day 2.
+![image](https://github.com/General2096/Springboard/blob/main/Bitcoin/Images/Binance-Historical-ActualvsPred.png)
+
 
 ## BackTesting
 Backtesting allows a trader to simulate a trading strategy using historical data to generate results and analyze risk and profitability before risking any actual capital. The main backtesting strategy Moving Average Convergence Divergence (MACD) was followed from this [medium post](https://medium.com/swlh/backtesting-a-bitcoin-trading-strategy-96ea854762bc).
@@ -84,13 +83,14 @@ Additional strategies are also available in the notebook. The library Backtrader
 The entire dataset was run on backtrader and concluded with an ROI: 24655.08%%, Start cash 100000.00, End cash: 24755078.98.
 
 ## Model Prediction on Future Data
-Now, this is the stuff we care about. How will the model forecase the future to see if we can turn a profit with Bitcoin investment or stay away from it? The entire dataset was reused to train the model and used to predict the next 7 days.
+Now, this is the stuff we care about. How will the model forecast the future to see if we can turn a profit with Bitcoin investment or stay away from it? The entire dataset was reused to train the model and used to predict the next 7 days.
 
 Insert image of the 7 day table
 
 From the table showcased above, the model predicts a continous rise in the value of Bitcoin for the coming 7 days.
 
 > Based on the prediction, had you invested into a single Bitcoin with a value of 47373 on 12/31, and waited 7 days later, you would expect a Bitcoin value of 56200; a 18.6347% increase; 
+> 
 > 25.8519% increase with the highest prediction or a 11.6746% increase with the lowest prediction.
 
 
@@ -99,7 +99,7 @@ Now, is it possible the model got lucky with the prediction? Could it have just 
 
 Cross validation performance metrics are visualized for the MAPE(Mean Absolute Percent Error). It measures the size of the error in percentage terms for easy interpretation. It is calculated as the average of the unsigned percentage error.
 
-Insert image of the plot cross valiadtion metric
+[image](https://github.com/General2096/Springboard/blob/main/Bitcoin/Images/Binance-crossvalidation.png)
 
 We see for this forecast that errors around 10% are typical for predictions two days into the future, and that errors increase up to around 17% for predictions that are a 14 days out.
 
