@@ -85,7 +85,7 @@ The entire dataset was run on backtrader and concluded with an ROI: 24655.08%%, 
 ## Model Prediction on Future Data
 Now, this is the stuff we care about. How will the model forecast the future to see if we can turn a profit with Bitcoin investment or stay away from it? The entire dataset was reused to train the model and used to predict the next 7 days.
 
-Insert image of the 7 day table
+![image](https://github.com/General2096/Springboard/blob/main/Bitcoin/Images/Binance-7-day-prediction%20table.png)
 
 From the table showcased above, the model predicts a continous rise in the value of Bitcoin for the coming 7 days.
 
@@ -99,7 +99,7 @@ Now, is it possible the model got lucky with the prediction? Could it have just 
 
 Cross validation performance metrics are visualized for the MAPE(Mean Absolute Percent Error). It measures the size of the error in percentage terms for easy interpretation. It is calculated as the average of the unsigned percentage error.
 
-[image](https://github.com/General2096/Springboard/blob/main/Bitcoin/Images/Binance-crossvalidation.png)
+![image](https://github.com/General2096/Springboard/blob/main/Bitcoin/Images/Binance-crossvalidation.png)
 
 We see for this forecast that errors around 10% are typical for predictions two days into the future, and that errors increase up to around 17% for predictions that are a 14 days out.
 
