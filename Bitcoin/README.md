@@ -70,17 +70,24 @@ The model greatly over-predicted the value of Bitcoin, the error becoming much l
 
 
 ## BackTesting
-Backtesting allows a trader to simulate a trading strategy using historical data to generate results and analyze risk and profitability before risking any actual capital. The main backtesting strategy Moving Average Convergence Divergence (MACD) was followed from this [medium post](https://medium.com/swlh/backtesting-a-bitcoin-trading-strategy-96ea854762bc).
+Backtesting allows a trader to simulate a trading strategy using historical data to generate results and analyze risk and profitability before risking any actual capital. Three startegies were tested on the two 'versions' of the dataset as they have mixed results. The strategies were the MACD, Testing, and Buy and Hold. The strategy Moving Average Convergence Divergence (MACD) was followed from this [medium post](https://medium.com/swlh/backtesting-a-bitcoin-trading-strategy-96ea854762bc). The Testing startegy was taken from the [backtrader](https://www.backtrader.com/docu/quickstart/quickstart/) site and lastly the Buy and Hold strategy was also taken from the [backtrader](https://www.backtrader.com/blog/2019-06-13-buy-and-hold/buy-and-hold/) website. Mixed results were obtained based on the dataset used. 
 
-> The strategy can be summarized in:
-> 
->        enter the trade (buy) when the MACD line crosses above the MACD signal line.
->    
->        exit trade (sell) when the MACD line crosses below the MACD signal line,
+Binance Dataset
 
-Additional strategies are also available in the notebook. The library Backtrader was used to test our strategy. 
+-MACD == ROI: -99.98%%, Starting Portfolio Value: 10000.00, Final Portfolio Value: 1.78
 
-The entire dataset was run on backtrader and concluded with an ROI: 24655.08%%, Start cash 100000.00, End cash: 24755078.98.
+-Testing == ROI: 386.07%, Starting Portfolio Value: 10000.00, Final Portfolio Value: 48607.24
+
+-Buy and Hold == ROI: 0.00, Starting Portfolio Value: 10000.00, Final Portfolio Value: 10000.00 **Needs Fix
+
+Yahoo Dataset
+
+-MACD == ROI: 24655.08%%, Starting Portfolio Value: 10000.00, Final Portfolio Value: 2475507.90
+
+-Testing == ROI: 19.72%, Starting Portfolio Value: 10000.00, Final Portfolio Value: 11971.54
+
+-Buy and Hold == ROI: 12929.54%, Starting Portfolio Value: 10000.00, Final Portfolio Value: 1302953.62
+
 
 ## Model Prediction on Future Data
 Now, this is the stuff we care about. How will the model forecast the future to see if we can turn a profit with Bitcoin investment or stay away from it? The entire dataset was reused to train the model and used to predict the next 7 days.
