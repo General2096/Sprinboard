@@ -25,6 +25,7 @@ Performance checking on the model was done with the test set. The performance wa
 
 It was concluded it was due to the model overfitting the data. Steps were then done to reduce this.
 To reduce overfitting, the follwing were used.
-1.Lable Smoothing
-2.Mixup
-3.Dropout
+1.Moving to a different pre-trained model
+2.Lable Smoothing
+3.Mixup
+4.Dropout - Currently
