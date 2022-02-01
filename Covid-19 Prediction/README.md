@@ -23,18 +23,27 @@ Fastai was used for this project.
 To utilize fastai, a GPU was required. Paperspace was used as an environment and a Free GPU was already available. The models used quickly became large and complex, and the GPU would consistently run out of memory and the kernel would die. A stronger GPU was used from the paid service. 
 
 # Exploratory Data Analysis
-DICOM Files are the primary format for transfering and storing medical images in a hospital database. 
+DICOM Files are the primary format for transfering and storing medical images in a hospital database. The following [page](https://towardsdatascience.com/understanding-dicom-bce665e62b72) can provide additional information and also give links for further readings. 
 
 # Preprocessing and Training
+Two copies of the dataset were used, one in the format it came in and the other was from the copies for training purposes.
+The original dataset was used for further testing instead from the traditional way as instead of doing a prediction based on a single image, it is done by the greater prediction of positive or negative. In reality, multiple scans are taken of the individual, which can then be overall assessed for prediction. 
 
+A cnn learner was used for transfer learning and it normalized the images for you. 
 
 # Modeling
-The splitter created in the datablock is random, as such, the model most likely memorizes the person as each individual has numerouos images. This would explain why after 2 epocks, the accuracy is near 100%. 
-Performance checking on the model was done with the test set. The performance was really low at about 35% accuracy.
+When the datablock is made, it randomly split the data to a 80% training and a 20% validation set. The model performance after 2 epochs shows a near 100% accuracy, this is most likely due to the random split, as each individual has multiple images, and is most likely able to remember patients. 
 
-It was concluded it was due to the model overfitting the data. Steps were then done to reduce this.
+Original testing showed poor results in the test set. The performance was really low at about 30-35% accuracy.
+It was concluded it was due to the model overfitting on the training data.
 To reduce overfitting, the follwing were used.
 1.Moving to a different pre-trained model
+  The original model was resnet34, then moved to resnet50, and lastly resnet101.
+  Resnet50 had significant performance increase from resnet34, but resnet101 performed worse than resnet50.
 2.Lable Smoothing
 3.Mixup
-4.Dropout - Currently
+4.Dropout
+  Did not see a performance increase with an increase or decrease in dropout. 
+  
+The original dataset was then used for the existing model to assess the averages instead of trying to increase performance on single images.
+
