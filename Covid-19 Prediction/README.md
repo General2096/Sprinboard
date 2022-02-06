@@ -51,45 +51,31 @@ Each dicom file provides plenty of information on the header of the file and eac
 ![image](link)
 
 # Preprocessing and Training
-The image could not maintain
-Two copies of the dataset were used, one in the format it came in and the other was from the copies for training purposes.  The test set for each individual was 
-
-A cnn learner was used for transfer learning and it normalized the images for you. 
-
-The images did not look good when showed from the dataloaders.
+In regards to the datablock, the only transformation on the images was a resize with a split of 20% of the training data for validation, and mixed precision was used on the dataloader. A A cnn learner was used for transfer learning as it normalized the images for you and tracked specific metrics. The images did not look good as they were often obscured and missing information. 
 
 ![image](image of bad ct scan)
 
-A custom class that took advantage of the windowing function in fastai was used from the following [notebook](https://www.kaggle.com/avirdee/windowed-datablocks-fastai) that will allow much better visuals of the dicom files. When windowing, the center and level have to be adjusted based on the part being studies, more information can be found [here](https://radiopaedia.org/articles/windowing-ct?lang=us).
+To improve the quality of the images, a custom class that took advantage of the window function in fast.ai was used from the following [notebook](https://www.kaggle.com/avirdee/windowed-datablocks-fastai). When windowed, the center and level have to be adjusted based on the part being studies, more information can be found [here](https://radiopaedia.org/articles/windowing-ct?lang=us).
 
 Additional helpful notebook are available from the following links:
 https://www.kaggle.com/jhoward/don-t-see-like-a-radiologist-fastai
 https://www.kaggle.com/jhoward/some-dicom-gotchas-to-be-aware-of-fastai
 
 # Modeling
-When the datablock is made, it randomly split the data to a 80% training and a 20% validation set. The model performance after 2 epochs shows a near 100% accuracy, this is most likely due to the random split, as each individual has multiple images, and is most likely able to remember patients. 
+The model performance after 2 epochs showed near 100% accuracy, this is most likely due to the random split that occurred during the creation of the datablock, as it most likely was able to remember patients. 
 
-cnn_Learner by default adds a normalization transformation to the dls.
-model is exported as a pkl file
-
-Original testing showed poor results in the test set. The performance was really low at about 30-35% accuracy.
-
-(insert image of classification reporrt of original model)
-
-It was concluded it was due to the model overfitting on the training data.
-To reduce overfitting, the follwing were used.
+It was believed it was due to the model overfitting on the training data. To reduce overfitting, the follwing were used.
 1.Moving to a different pre-trained model
   The original model was resnet34, then moved to resnet50, and lastly resnet101.
   Resnet50 had significant performance increase from resnet34, but resnet101 performed worse than resnet50.
   *Before adding windowing class
-2.Lable Smoothing
+2.Label Smoothing
 3.Mixup
 4.(Dropout)[https://www.fastaireference.com/overfitting/dropout]
   Did not see a performance increase with an increase or decrease in dropout. 
-  
-The original dataset was then used for the existing model to assess the averages instead of trying to increase performance on single images.
+
+Once all the changes made were concluded, the model performance drastically improved but note near the preferred outcome. The final model was exported as a pkl file for future prediction without the requirement of re=training.
 
 [image](final classification report)
 
-In traditional imaging classification, you would try to come as close as possible to predict every single image correct seperately, but that is not the case here. While their may be 1000's of images, they all may be for one person. In reality, multiple scans are taken of the individual, which can then be overall assessed for prediction. Each image was predicted and added to a count of covid or not; which would then determine the final classification for the individual.
-
+In traditional imaging classification, you would try to come as close as possible to predict every single image correct seperately, but that is not the case here. While their may be 1000's of images, they all may be for one person. In reality, multiple scans are taken of the individual, which can then be overall assessed for prediction. Each image was predicted and added to a count of covid or not; which would then determine the final classification for the individual based on that count.
