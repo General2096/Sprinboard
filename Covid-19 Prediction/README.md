@@ -67,14 +67,14 @@ The new class significantly improved the visual of the images.
 
 The model performance after 2 epochs showed near 100% accuracy, this is most likely due to the random split that occurred during the creation of the datablock, as it most likely was able to remember patients. It it believed it was due to the model overfitting on the training data. To reduce overfitting, the follwing were used.
 
-1.Moving to a different pre-trained model
-  * The original model was resnet34, then moved to resnet50, and lastly resnet101.
-  * Resnet50 had significant performance increase from resnet34, but resnet101 performed worse than resnet50; returned to resnet50.
-  * Before adding windowing class
-2.Label Smoothing
-3.Mixup
-4.[Dropout][https://www.fastaireference.com/overfitting/dropout]
-  * Did not see a performance increase with an increase or decrease in dropout, before windowed. 
+1. Moving to a different pre-trained model
+   * The original model was resnet34, then moved to resnet50, and lastly resnet101.
+   * Resnet50 had significant performance increase from resnet34, but resnet101 performed worse than resnet50; returned to resnet50.
+   * Before adding windowing class
+2. Label Smoothing
+3. Mixup
+4. [Dropout](https://www.fastaireference.com/overfitting/dropout)
+   * Did not see a performance increase with an increase or decrease in dropout, before windowed. 
 
 Once all the changes made were concluded, the model performance drastically improved but note near the preferred outcome. The final model was exported as a pkl file for future prediction without the requirement of re=training.
 
