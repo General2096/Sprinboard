@@ -73,12 +73,12 @@ The model performance after 2 epochs showed near 100% accuracy, this is most lik
   * Before adding windowing class
 2.Label Smoothing
 3.Mixup
-4.(Dropout)[https://www.fastaireference.com/overfitting/dropout]
-  *Did not see a performance increase with an increase or decrease in dropout, before windowed. 
+4.[Dropout][https://www.fastaireference.com/overfitting/dropout]
+  * Did not see a performance increase with an increase or decrease in dropout, before windowed. 
 
 Once all the changes made were concluded, the model performance drastically improved but note near the preferred outcome. The final model was exported as a pkl file for future prediction without the requirement of re=training.
 
-[image](https://github.com/General2096/Springboard/blob/main/Covid-19%20Prediction/images/windowed%20test%20results.png)
+![image](https://github.com/General2096/Springboard/blob/main/Covid-19%20Prediction/images/windowed%20test%20results.png)
 
 In traditional imaging classification, you would try to come as close as possible to predict every single image correct seperately, but that is not the case here. While their may be 1000's of images, they all may be for one person. In reality, multiple scans are taken of the individual, which can then be overall assessed for prediction. Each image was predicted and added to a count of covid or not; which would then determine the final classification for the individual based on that count. From the 5 patients tested, each having 100's of images, the 4/5 were correctly classfied.
 
