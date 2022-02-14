@@ -80,7 +80,9 @@ Once all the changes made were concluded, the model performance drastically impr
 
 ![image](https://github.com/General2096/Springboard/blob/main/Covid-19%20Prediction/images/windowed%20test%20results.png)
 
-In traditional imaging classification, you would try to come as close as possible to predict every single image correct seperately, but that is not the case here. While their may be 1000's of images, they all may be for one person. In reality, multiple scans are taken of the individual, which can then be overall assessed for prediction. Each image was predicted and added to a count of covid or not; which would then determine the final classification for the individual based on that count. From the 5 patients tested, each having 100's of images, the 4/5 were correctly classfied.
+In traditional imaging classification, you would try to come as close as possible to predict every single image correct seperately, but that is not the case here. While their may be 1000's of images, they all may be for one person. In reality, multiple scans are taken of the individual, which can then be overall assessed for prediction. Each image was predicted and added to a count of covid or not; which would then determine the final classification for the individual based on that count. 
+
+An additional dataset was downloaded from the midrc site for testing. The number of patients tested was limited due to storage. From the 25 patients tested of a mixture of covid positive and negative, each having 100's of images, the model was able to correctly predict 21. That is an accuracy of 84% and an error rate of 16%. Error rates occur among radiologists roughly 3-5%.
 
 
 Additional helpful notebook are available from the following links:
